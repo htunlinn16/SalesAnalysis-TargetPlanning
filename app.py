@@ -10,7 +10,7 @@ import calendar
 
 # Page configuration
 st.set_page_config(
-    page_title="Sales Target & Analysis App",
+    page_title="",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -30,7 +30,6 @@ def load_css():
             st.markdown(f'<script>{js}</script>', unsafe_allow_html=True)
         except FileNotFoundError:
             pass
-        
             
     except FileNotFoundError:
         # If CSS file doesn't exist, use minimal inline styles
@@ -297,23 +296,9 @@ def main():
     # Load CSS
     load_css()
     
-    # Custom top navigation banner
-    st.markdown("""
-    <div id="custom-top-banner">
-        <div class="banner-content">
-            <div class="banner-tabs">
-                <button class="banner-tab active" onclick="switchTab(0)">Target Planning & AMS</button>
-                <button class="banner-tab" onclick="switchTab(1)">Sales Analysis</button>
-            </div>
-            <button id="toggle-streamlit-ui" class="toggle-ui-btn" onclick="toggleStreamlitUI()" title="Toggle Streamlit UI">
-                <span>⚙</span>
-            </button>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
     
-    # Top navigation tabs (hidden but functional)
-    tab1, tab2 = st.tabs(["Target Planning & AMS", "Sales Analysis"])
+    # Top navigation tabs
+    tab1, tab2 = st.tabs(["🎯 Target Planning & AMS", "📈 Sales Analysis"])
     
     with tab1:
         target_planning_page()
@@ -988,7 +973,7 @@ def sales_analysis_page():
     
     # Check if data is loaded
     if st.session_state.sales_data is None:
-        st.warning("⚠️ Please upload sales data in the Target Planning section first.")
+        st.warning("⚠️ Please upload sales data in the Target Planning & AMS section first.")
         return
     
     df = st.session_state.sales_data.copy()
